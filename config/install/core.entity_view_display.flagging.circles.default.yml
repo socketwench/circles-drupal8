@@ -1,0 +1,22 @@
+uuid: a17224fd-ec25-4c8b-bb09-090f6600bb50
+langcode: en
+status: true
+dependencies:
+  entity:
+    - field.instance.flagging.circles.field_circle_tags
+    - flag.flag.circles
+  module:
+    - taxonomy
+id: flagging.circles.default
+label: null
+targetEntityType: flagging
+bundle: circles
+mode: default
+content:
+  field_circle_tags:
+    weight: 0
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: taxonomy_term_reference_link
+hidden: {  }

@@ -1,0 +1,9 @@
+name: Circles
+description: Share content with user-created circles.
+package: Flags
+type: module
+version: 1.0
+core: 8.0
+dependencies:
+ - flag
+ - user

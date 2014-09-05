@@ -1,0 +1,10 @@
+uuid: 65554852-7ffa-4234-9a00-ef6d91d034a2
+langcode: en
+status: true
+dependencies: {  }
+id: authenticated
+label: 'Authenticated user'
+weight: 1
+permissions:
+  - 'flag circles'
+  - 'unflag circles'

@@ -1,0 +1,18 @@
+uuid: 14d787cc-3c3b-4037-9a02-2d50350624a2
+langcode: en
+status: true
+dependencies:
+  module:
+    - entity_reference
+    - taxonomy
+id: taxonomy_term.field_circle_user
+name: field_circle_user
+entity_type: taxonomy_term
+type: entity_reference
+settings:
+  target_type: user
+module: entity_reference
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }

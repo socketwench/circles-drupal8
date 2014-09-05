@@ -1,0 +1,23 @@
+uuid: 2abddb86-f70d-4417-bf04-4de57f248131
+langcode: en
+status: true
+dependencies:
+  entity:
+    - field.storage.flagging.field_circle_tags
+    - flag.flag.circles
+id: flagging.circles.field_circle_tags
+field_name: field_circle_tags
+entity_type: flagging
+bundle: circles
+label: circle_tags
+description: 'The circles in which the user belongs.'
+required: true
+translatable: false
+default_value:
+  -
+    target_uuid: 7627d2c4-7cdf-4a78-ac06-6a7e79ff47e1
+default_value_function: ''
+settings:
+  handler: default
+third_party_settings: {  }
+field_type: taxonomy_term_reference

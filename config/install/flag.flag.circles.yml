@@ -1,0 +1,26 @@
+uuid: 3b543f97-bb42-4d3a-ba5d-9339da2db40e
+langcode: en
+status: true
+dependencies:
+  module:
+    - user
+id: circles
+label: Circles
+types:
+  - '0'
+entity_type: user
+is_global: false
+flag_short: 'Add to circles'
+flag_long: ''
+flag_message: 'The user has been added to your circles.'
+unflag_short: 'Remove from circles'
+unflag_long: ''
+unflag_message: 'The user has been removed from all your circles.'
+unflag_denied_text: ''
+weight: 0
+flag_type: flagtype_user
+link_type: reload
+flagTypeConfig:
+  show_on_profile: null
+  access_uid: null
+linkTypeConfig: {  }

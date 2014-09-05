@@ -1,0 +1,4 @@
+services:
+  circles:
+    class: Drupal\circles\CirclesService
+    arguments: ['@flag', '@current_user']

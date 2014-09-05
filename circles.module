@@ -1,0 +1,27 @@
+<?php
+/**
+ * @file
+ * Module file for circles.
+ */
+
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\node\NodeInterface;
+use Drupal\Core\Session\AccountInterface;
+
+/**
+ * Implements hook_node_access().
+ */
+function circles_node_access(NodeInterface $node, $op, AccountInterface $account, $langcode) {
+  // @todo Grab the field name from a UI selection.
+  if ($node->hasField('field_circle_tags')) {
+    $values = $node->getValue();
+    $circles = $values['field_circle_tags'];
+  }
+}
+
+/**
+ * Implements hook_entity_access().
+ */
+function circles_entity_access(EntityInterface $entity, $operation, AccountInterface $account, $langcode) {
+  // @todo Determine if we need this.
+}

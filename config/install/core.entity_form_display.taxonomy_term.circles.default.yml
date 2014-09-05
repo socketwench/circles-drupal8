@@ -1,0 +1,45 @@
+uuid: 09d7410f-ccd2-4e90-b108-8ecb50b7bfc3
+langcode: en
+status: true
+dependencies:
+  entity:
+    - field.instance.taxonomy_term.circles.field_circle_user
+    - taxonomy.vocabulary.circles
+  module:
+    - entity_reference
+    - path
+    - text
+id: taxonomy_term.circles.default
+targetEntityType: taxonomy_term
+bundle: circles
+mode: default
+content:
+  name:
+    type: string
+    weight: -5
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  description:
+    type: text_textfield
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 30
+    settings: {  }
+    third_party_settings: {  }
+  field_circle_user:
+    weight: 31
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      autocomplete_type: tags
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+hidden: {  }

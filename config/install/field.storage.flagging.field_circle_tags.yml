@@ -1,0 +1,24 @@
+uuid: 9b4d3e72-85a4-43c3-8502-2a9a6b74d622
+langcode: en
+status: true
+dependencies:
+  module:
+    - flag
+    - taxonomy
+id: flagging.field_circle_tags
+name: field_circle_tags
+entity_type: flagging
+type: taxonomy_term_reference
+settings:
+  allowed_values:
+    -
+      vocabulary: circles
+      parent: 0
+  target_type: taxonomy_term
+  options_list_callback: null
+  target_bundle: null
+module: taxonomy
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }

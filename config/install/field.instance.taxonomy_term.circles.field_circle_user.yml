@@ -1,0 +1,22 @@
+uuid: 91431fc6-e39e-447f-962d-45e297a4dd74
+langcode: en
+status: true
+dependencies:
+  entity:
+    - field.storage.taxonomy_term.field_circle_user
+    - taxonomy.vocabulary.circles
+id: taxonomy_term.circles.field_circle_user
+field_name: field_circle_user
+entity_type: taxonomy_term
+bundle: circles
+label: circle_user
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_function: ''
+settings:
+  handler_settings: {  }
+  handler: default
+third_party_settings: {  }
+field_type: entity_reference

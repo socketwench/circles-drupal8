@@ -12,16 +12,31 @@ use Drupal\Core\Session\AccountInterface;
  * Implements hook_node_access().
  */
 function circles_node_access(NodeInterface $node, $op, AccountInterface $account, $langcode) {
-  // @todo Grab the field name from a UI selection.
-  if ($node->hasField('field_circle_tags')) {
-    $values = $node->getValue();
-    $circles = $values['field_circle_tags'];
+  switch ($op) {
+    case 'view':
+      if (\Drupal::service('circles')->canView($account, $node)) {
+        return NODE_ACCESS_ALLOW;
+      }
+      break;
+
+    case 'create':
+      break;
+
+    case 'delete':
+      break;
+
+    case 'update':
+      break;
   }
+
+  // @todo Return NODE_ACCESS_IGNORE if the content is "public".
+
+  return NODE_ACCESS_DENY;
 }
 
 /**
  * Implements hook_entity_access().
  */
 function circles_entity_access(EntityInterface $entity, $operation, AccountInterface $account, $langcode) {
-  // @todo Determine if we need this.
+
 }

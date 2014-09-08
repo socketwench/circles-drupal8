@@ -9,8 +9,11 @@
 namespace Drupal\circles;
 
 
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\flag\FlagService;
+use Drupal\node\NodeInterface;
+use Drupal\user\Entity\User;
 
 class CirclesService {
 
@@ -42,7 +45,7 @@ class CirclesService {
   }
 
   public function getFlag() {
-    return $this->flagService->getFlagById('circle');
+    return $this->flagService->getFlagById('circles');
   }
 
   /**
@@ -62,7 +65,8 @@ class CirclesService {
       $circler = $this->current_user;
     }
 
-    $this->flagService->flagByObject($this->getFlag(), $circled, $circler);
+    $user = User::load($circled->id());
+    $this->flagService->flagByObject($this->getFlag(), $user, $circler);
   }
 
   /**
@@ -84,8 +88,65 @@ class CirclesService {
 
     // If no circles are specified, unflag the user entirely.
     if (empty($circles)) {
-      $this->flagService->unflagByObject($this->getFlag(), $circled, $circler);
+      $user = User::load($circled->id());
+      $this->flagService->unflagByObject($this->getFlag(), $user, $circler);
     }
+  }
+
+  /**
+   * Test if one user is in any of another user's circles.
+   *
+   * @param AccountInterface $account
+   *   The user to test if they are in the circler's circles.
+   * @param AccountInterface $circler
+   *   The owner of the circle. If NULL, the current user is assumed.
+   *
+   * @return bool
+   *   TRUE if $account is in $circler's circles. FALSE otherwise.
+   */
+  public function inCircles(AccountInterface $account, AccountInterface $circler = NULL) {
+    if ($circler == NULL) {
+      $circler = $this->current_user;
+    }
+
+    $flag = $this->getFlag();
+    $user = User::load($account->id());
+
+    if (!$flag->isFlagged($user, $circler)) {
+      return FALSE;
+    }
+
+    $circles = [];
+    $flaggings = $this->flagService->getFlaggings($user, $flag, $circler);
+    foreach ($flaggings as $flagging) {
+      // @todo Get circles from taxonomy values.
+    }
+
+    // @todo Return array of circles, not just TRUE or FALSE.
+    return TRUE;
+  }
+
+  /**
+   * Test if an account can view content.
+   *
+   * @param AccountInterface $account
+   *   The account attempting to view content.
+   * @param NodeInterface $node
+   *   The content the account is attempting to view.
+   *
+   * @return bool
+   *   TRUE if the account can view the content, FALSE otherwise.
+   */
+  public function canView(AccountInterface $account, NodeInterface $node) {
+    $author = $node->getOwner();
+
+    // @todo Grab the field name from a UI selection.
+    if ($node->hasField('field_circle_tags')) {
+      $values = $node->getValue();
+      $node_circles = $values['field_circle_tags'];
+    }
+
+    return $this->inCircles($account, $author);
   }
 
 }
